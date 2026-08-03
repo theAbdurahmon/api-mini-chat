@@ -2,7 +2,7 @@ services:
     app:
         build:
             context: .
-            dockerfile: docker/Dockerfiled
+            dockerfile: docker/Dockerfile
         container_name: api-mini-chat
         volumes:
             - .:/var/www
