@@ -26,8 +26,15 @@ COPY . .
 
 RUN composer dump-autoload --optimize
 
+RUN apk add --no-cache linux-headers autoconf g++ make \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-enable pcntl \
+    && apk del autoconf g++ make
+
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 775 storage bootstrap/cache
+
+RUN docker-php-ext-install pcntl
 
 EXPOSE 9000
 
